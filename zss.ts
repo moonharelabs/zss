@@ -21,15 +21,15 @@ export interface Style extends Pseudos {
 
 let ssr:string[] = [];
 
-let insertRule: (rule: string) => number =
+let style: { insertRule: ((rule: string) => number) } =
     typeof window == 'object'
         ? (
               Object.assign(
                   document.head.appendChild(document.createElement('style')),
                   { innerHTMl: ' ' }
               ).sheet as CSSStyleSheet
-          ).insertRule
-        : (rule: string) => ssr.push(rule);
+          )
+        : {insertRule(rule: string) {return ssr.push(rule)}}
 
 /**
  * Transforms the input into a className.
