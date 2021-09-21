@@ -139,7 +139,7 @@ function css(css: Style, global?: boolean, keyframes?: boolean) {
             // For keyframes
             keyframes ? { ['@keyframes ' + className]: css } : css,
             global ? '' : '.' + className
-        ).forEach((rule) => (style.sheet as CSSStyleSheet).insertRule(rule));
+        ).forEach((rule) => insertRule(rule));
         cache.push(stringified);
     }
 
