@@ -33,14 +33,14 @@ export let parse = (obj: any, selector?: string, prefixer?: ((property: string, 
                 // Handling the `@font-face` where the
                 // block doesn't need the brackets wrapped
                 if (key[1] == 'f') {
-                    blocks.concat(parse(val, key));
+                    blocks = blocks.concat(parse(val, key));
                 } else {
                     // Regular rule block
                     blocks.push(key + '{' + parse(val, key[1] == 'k' ? '' : selector).join('') + '}');
                 }
             } else {
                 // Call the parse for this block
-                blocks.concat(parse(val, next));
+                blocks = blocks.concat(parse(val, next));
             }
         } else {
             if (key[0] == '@' && key[1] == 'i') {
