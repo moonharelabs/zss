@@ -3,7 +3,7 @@ import { Properties, Style } from "./types";
 /**
  * Parses the object into css, scoped, blocks
  */
-export let parse = (obj: any, selector?: string, prefixer?: ((property: string, value: string) => string)) => {
+export let parse = (obj: any, selector?: string, prefixer?: ((property: string, value: string) => string)):string[] => {
     let outer = '';
     let blocks = [];
     let current = '';
