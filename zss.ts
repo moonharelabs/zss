@@ -47,7 +47,7 @@ let toHash = (str: string) =>
 /**
  * Parses the object into css, scoped, blocks
  */
-export let parse = (
+let parse = (
     obj: any,
     selector?: string,
     prefixer?: (property: string, value: string) => string
@@ -158,4 +158,5 @@ let glob = (styles: Style) => css(styles, !0);
  */
 let keyframes = (styles: Style) => css(styles, !1, !0);
 
+export const exportedForTesting = { ssr, insertRule, parse, cache, toHash };
 export { css, glob, keyframes };
