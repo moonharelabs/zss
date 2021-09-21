@@ -1,4 +1,6 @@
-import { parse } from './parse';
+import { parse as P } from './parse';
+
+let parse = (obj: any, selector?: string, prefixer?: ((property: string, value: string) => string)) => P(obj, selector, prefixer);
 
 describe('parse', () => {
     it('regular', () => {
