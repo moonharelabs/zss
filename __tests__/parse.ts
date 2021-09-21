@@ -1,4 +1,4 @@
-import { exportedForTesting } from './zss';
+import { exportedForTesting } from '../zss';
 
 let parse = (
     obj: any,
