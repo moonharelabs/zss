@@ -24,7 +24,9 @@ declare let glob: (styles: Style) => string;
 declare let keyframes: (styles: Style) => string;
 export declare const exportedForTesting: {
     ssr: string[];
-    insertRule: (rule: string) => number;
+    sheet: {
+        insertRule: (rule: string) => number;
+    };
     parse: (obj: any, selector?: string | undefined, prefixer?: ((property: string, value: string) => string) | undefined) => string[];
     cache: string[];
     toHash: (str: string) => string;
