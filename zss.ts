@@ -127,7 +127,7 @@ let cache: string[] = [];
 /**
  * css entry
  */
-function css(css: Style, global?: boolean, global?: keyframes) {
+function css(css: Style, global?: boolean, keyframes?: boolean) {
     let stringified = JSON.stringify(css);
     // Get a string representation of the object that is called 'compiled'
     // Retrieve the className from cache or hash it in place
