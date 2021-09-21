@@ -17,7 +17,7 @@ export function css(css: Style) {
 
     // If there's no entry for the current className
     if (!cache[className]) {
-        parse(css, '.' + className).forEach(rule => style.sheet.insertRule(rule))
+        parse(css, '.' + className).forEach(rule => (style.sheet as CSSStyleSheet).insertRule(rule))
     }
     return className
 }
