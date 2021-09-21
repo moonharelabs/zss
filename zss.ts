@@ -19,7 +19,7 @@ export interface Style extends Pseudos {
     [key: string]: Properties;
 }
 
-let ssr = [];
+let ssr:string[] = [];
 
 let insertRule: (rule: string) => number =
     typeof window == 'object'
