@@ -5,7 +5,7 @@
   "main": "dist/zss.js",
   "module": "dist/zss.esm.js",
   "umd:main": "dist/zss.umd.js",
-  "source": "src/index.ts",
+  "source": "zss.ts",
   "unpkg": "dist/zss.umd.js",
   "types": "dist/zss.d.ts",
   "exports": {
