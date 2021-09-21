@@ -5,7 +5,7 @@ import { Properties, Style } from "./types";
  */
 export let parse = (obj: any, selector?: string, prefixer?: ((property: string, value: string) => string)):string[] => {
     let outer = '';
-    let blocks = [];
+    let blocks:string[] = [];
     let current = '';
     let next;
 
