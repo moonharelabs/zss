@@ -5,7 +5,7 @@ import { Properties, Style } from "./types";
  */
 export let parse = (obj: any, selector?: string, prefixer?: ((property: string, value: string) => string)) => {
     let outer = '';
-    let blocks = '';
+    let blocks = [];
     let current = '';
     let next;
 
@@ -33,14 +33,14 @@ export let parse = (obj: any, selector?: string, prefixer?: ((property: string, 
                 // Handling the `@font-face` where the
                 // block doesn't need the brackets wrapped
                 if (key[1] == 'f') {
-                    blocks += parse(val, key);
+                    blocks.concat(parse(val, key));
                 } else {
                     // Regular rule block
-                    blocks += key + '{' + parse(val, key[1] == 'k' ? '' : selector) + '}';
+                    blocks.push(key + '{' + parse(val, key[1] == 'k' ? '' : selector).join('') + '}');
                 }
             } else {
                 // Call the parse for this block
-                blocks += parse(val, next);
+                blocks.concat(parse(val, next));
             }
         } else {
             if (key[0] == '@' && key[1] == 'i') {
@@ -63,8 +63,8 @@ export let parse = (obj: any, selector?: string, prefixer?: ((property: string, 
         next = selector ? selector + '{' + current + '}' : current;
 
         // Else just push the rule
-        return outer + next + blocks;
-    }
+        return blocks.unshift(outer + next);
+    } else blocks.unshift(outer);
 
-    return outer + blocks;
+    return blocks;
 };
