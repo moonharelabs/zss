@@ -63,7 +63,7 @@ export let parse = (obj: any, selector?: string, prefixer?: ((property: string, 
         next = selector ? selector + '{' + current + '}' : current;
 
         // Else just push the rule
-        return blocks.unshift(outer + next);
+        blocks.unshift(outer + next);
     } else blocks.unshift(outer);
 
     return blocks;
