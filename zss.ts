@@ -21,7 +21,7 @@ export interface Style extends Pseudos {
 
 let ssr:string[] = [];
 
-let style: { insertRule: ((rule: string) => number) } =
+let sheet: { insertRule: ((rule: string) => number) } =
     typeof window == 'object'
         ? (
               Object.assign(
@@ -139,7 +139,7 @@ function css(css: Style, global?: boolean, keyframes?: boolean) {
             // For keyframes
             keyframes ? { ['@keyframes ' + className]: css } : css,
             global ? '' : '.' + className
-        ).forEach((rule) => insertRule(rule));
+        ).forEach((rule) => sheet.insertRule(rule));
         cache.push(stringified);
     }
 
