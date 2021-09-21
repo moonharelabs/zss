@@ -134,7 +134,7 @@ function css(css: Style, global?: boolean, keyframes?: boolean) {
     let className = toHash(stringified);
 
     // If there's no entry for the current className
-    if (!cache.includes(stringified)) {
+    if (cache.indexOf(stringified) == -1) {
         parse(
             // For keyframes
             keyframes ? { ['@keyframes ' + className]: css } : css,
