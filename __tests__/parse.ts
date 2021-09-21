@@ -4,7 +4,7 @@ let parse = (
     obj: any,
     selector?: string,
     prefixer?: (property: string, value: string) => string
-): string[] => exportedForTesting.parse(obj, selector, prefixer);
+): string[] => exportedForTesting.parse(obj, selector, prefixer).join('');
 
 describe('parse', () => {
     it('regular', () => {
