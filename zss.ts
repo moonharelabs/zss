@@ -158,5 +158,5 @@ let glob = (styles: Style) => css(styles, !0);
  */
 let keyframes = (styles: Style) => css(styles, !1, !0);
 
-export const exportedForTesting = { ssr, insertRule, parse, cache, toHash };
+export const exportedForTesting = { ssr, sheet, parse, cache, toHash };
 export { css, glob, keyframes };
