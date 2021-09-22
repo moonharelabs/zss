@@ -1,1 +1,1 @@
-let ssr:string[] = [];
+export let ssr:string[] = [];
