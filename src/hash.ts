@@ -7,6 +7,6 @@
  * @param  str
  * @returns string
  */
-let toHash = (str: string) =>
+export let toHash = (str: string) =>
     'zs' +
     Array.from(str).reduce((p, c, i) => (101 * p + c.charCodeAt(0)) >>> 0, 11);
