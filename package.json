@@ -7,7 +7,7 @@
   "umd:main": "dist/zss.umd.js",
   "source": "src/index.ts",
   "unpkg": "dist/zss.umd.js",
-  "types": "dist/zss.d.ts",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/zss.js",
