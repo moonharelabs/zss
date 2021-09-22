@@ -1,53 +1,7 @@
-import type {
-    PropertiesFallback,
-    PropertiesHyphenFallback,
-    SimplePseudos,
-} from 'csstype';
-
-export interface Properties
-    extends PropertiesFallback<string | number, string | number>,
-        PropertiesHyphenFallback<string | number, string | number> {
-    [key: string]:
-        | string
-        | number
-        | (string | number | undefined)[]
-        | Properties
-        | undefined;
-}
-export type Pseudos = { [P in SimplePseudos]: Properties };
-export interface Style extends Pseudos {
-    [key: string]: Properties;
-}
-
-let ssr:string[] = [];
-
-let sheet: { insertRule: ((rule: string) => number) } =
-    typeof window == 'object'
-        ? (
-              Object.assign(
-                  document.head.appendChild(document.createElement('style')),
-                  { innerHTMl: ' ' }
-              ).sheet as CSSStyleSheet
-          )
-        : {insertRule(rule: string) {return ssr.push(rule)}}
-
-/**
- * Transforms the input into a className.
- * The multiplication constant 101 is selected to be a prime,
- * as is the initial value of 11.
- * The intermediate and final results are truncated into 32-bit
- * unsigned integers.
- * @param  str
- * @returns string
- */
-let toHash = (str: string) =>
-    'zs' +
-    Array.from(str).reduce((p, c, i) => (101 * p + c.charCodeAt(0)) >>> 0, 11);
-
 /**
  * Parses the object into css, scoped, blocks
  */
-let parse = (
+export let parse = (
     obj: any,
     selector?: string,
     prefixer?: (property: string, value: string) => string
@@ -121,42 +75,3 @@ let parse = (
 
     return blocks;
 };
-
-let cache: string[] = [];
-
-/**
- * css entry
- */
-function css(css: Style, global?: boolean, keyframes?: boolean) {
-    let stringified = JSON.stringify(css);
-    // Get a string representation of the object that is called 'compiled'
-    // Retrieve the className from cache or hash it in place
-    let className = toHash(stringified);
-
-    // If there's no entry for the current className
-    if (cache.indexOf(stringified) == -1) {
-        parse(
-            // For keyframes
-            keyframes ? { ['@keyframes ' + className]: css } : css,
-            global ? '' : '.' + className
-        ).forEach((rule) => sheet.insertRule(rule));
-        cache.push(stringified);
-    }
-
-    return className;
-}
-
-/**
- * CSS Global function to declare global styles
- * @type {Function}
- */
-let glob = (styles: Style) => css(styles, !0);
-
-/**
- * `keyframes` function for defining animations
- * @type {Function}
- */
-let keyframes = (styles: Style) => css(styles, !1, !0);
-
-export const exportedForTesting = { ssr, sheet, parse, cache, toHash };
-export { css, glob, keyframes };
