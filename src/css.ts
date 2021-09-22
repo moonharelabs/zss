@@ -2,6 +2,7 @@ import type { Style} from './types'
 import  { cache} from './cache'
 import  { toHash} from './hash'
 import  { parse} from './parse'
+import  { sheet} from './sheet'
 
 /**
  * css entry
