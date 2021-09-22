@@ -1,10 +1,10 @@
-import { exportedForTesting } from '../zss';
+import { parse as P } from './parse';
 
 let parse = (
     obj: any,
     selector?: string,
     prefixer?: (property: string, value: string) => string
-): string => exportedForTesting.parse(obj, selector, prefixer).join('');
+): string => P(obj, selector, prefixer).join('');
 
 describe('parse', () => {
     it('regular', () => {
