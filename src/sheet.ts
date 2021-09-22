@@ -1,4 +1,5 @@
-let sheet: { insertRule: ((rule: string) => number) } =
+import { ssr } from './ssr'
+export let sheet: { insertRule: ((rule: string) => number) } =
     typeof window == 'object'
         ? (
               Object.assign(
