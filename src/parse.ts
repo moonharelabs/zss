@@ -1,7 +1,7 @@
 /**
  * Parses the object into css, scoped, blocks
  */
-let parse = (
+export let parse = (
     obj: any,
     selector?: string,
     prefixer?: (property: string, value: string) => string
