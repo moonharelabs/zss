@@ -48,7 +48,7 @@
   "homepage": "https://github.com/moonharelabs/zss#readme",
   "devDependencies": {
     "@ampproject/filesize": "^4.3.0",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^28.1.6",
     "csstype": "^3.0.9",
     "jest": "^27.2.0",
     "microbundle": "^0.13.3",
